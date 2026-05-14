@@ -1,26 +1,169 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f7fb;
+  --foreground: #08111f;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-strong: #ffffff;
+  --surface-alt: rgba(255, 255, 255, 0.64);
+  --border: rgba(8, 17, 31, 0.08);
+  --copy-muted: #48556a;
+  --copy-soft: #6b7a92;
+  --meteor-ink: #08111f;
+  --meteor-midnight: #0f1d34;
+  --meteor-nova: #ff7a18;
+  --meteor-cyan: #19d5dd;
+  --meteor-gold: #ffd166;
+  --meteor-plasma: #ff6fe7;
+  --badge-bg: rgba(255, 255, 255, 0.86);
+  --glow-cyan: rgba(25, 213, 221, 0.18);
+  --glow-nova: rgba(255, 122, 24, 0.16);
+  --shadow-color: rgba(8, 17, 31, 0.16);
+  --grid-line: rgba(8, 17, 31, 0.07);
+  --font-display: "Avenir Next", "Segoe UI Variable Display", "Trebuchet MS",
+    sans-serif;
+  --font-body: "Segoe UI Variable Text", "Avenir Next", "Helvetica Neue",
+    sans-serif;
+  --font-code: "SFMono-Regular", "SF Mono", "IBM Plex Mono", "Menlo", monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
+  --color-copy-muted: var(--copy-muted);
+  --color-copy-soft: var(--copy-soft);
+  --color-meteor-ink: var(--meteor-ink);
+  --color-meteor-midnight: var(--meteor-midnight);
+  --color-meteor-nova: var(--meteor-nova);
+  --color-meteor-cyan: var(--meteor-cyan);
+  --color-meteor-gold: var(--meteor-gold);
+  --color-meteor-plasma: var(--meteor-plasma);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-code);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #040b16;
+  --foreground: #f4f7fb;
+  --surface: rgba(7, 16, 31, 0.76);
+  --surface-strong: rgba(10, 21, 40, 0.94);
+  --surface-alt: rgba(10, 21, 40, 0.72);
+  --border: rgba(164, 190, 255, 0.14);
+  --copy-muted: #b6c5dc;
+  --copy-soft: #89a0bf;
+  --meteor-ink: #f4f7fb;
+  --badge-bg: rgba(9, 21, 39, 0.76);
+  --glow-cyan: rgba(25, 213, 221, 0.24);
+  --glow-nova: rgba(255, 122, 24, 0.22);
+  --shadow-color: rgba(0, 0, 0, 0.42);
+  --grid-line: rgba(124, 150, 201, 0.13);
+}
+
+html {
+  background-color: var(--background);
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(circle at top left, var(--glow-cyan), transparent 34%),
+    radial-gradient(circle at top right, var(--glow-nova), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%);
+  font-family: var(--font-body);
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    background-image 220ms ease;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(255, 122, 24, 0.24);
+  color: var(--foreground);
+}
+
+.meteor-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 88%);
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 32px 90px var(--shadow-color);
+  backdrop-filter: blur(24px);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.eyebrow {
+  background: var(--badge-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 40px rgba(8, 17, 31, 0.08);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.text-gradient {
+  background-image: linear-gradient(
+    130deg,
+    var(--meteor-gold),
+    var(--meteor-nova) 38%,
+    var(--meteor-cyan)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.button-primary {
+  background-image: linear-gradient(
+    135deg,
+    var(--meteor-gold),
+    var(--meteor-nova) 52%,
+    #ff8f3c
+  );
+  box-shadow: 0 18px 44px rgba(255, 122, 24, 0.28);
+}
+
+.button-secondary {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.dashboard-rail::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem auto 1.25rem 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(25, 213, 221, 0.45),
+    transparent
+  );
 }
