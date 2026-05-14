@@ -82,6 +82,10 @@ body {
     radial-gradient(circle at top right, var(--glow-nova), transparent 32%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%);
   font-family: var(--font-body);
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    background-image 220ms ease;
 }
 
 a {
@@ -106,12 +110,19 @@ a {
   border: 1px solid var(--border);
   box-shadow: 0 32px 90px var(--shadow-color);
   backdrop-filter: blur(24px);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .eyebrow {
   background: var(--badge-bg);
   border: 1px solid var(--border);
   box-shadow: 0 14px 40px rgba(8, 17, 31, 0.08);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
 }
 
 .text-gradient {
@@ -138,6 +149,10 @@ a {
 .button-secondary {
   background: var(--surface-alt);
   border: 1px solid var(--border);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
 }
 
 .dashboard-rail::before {

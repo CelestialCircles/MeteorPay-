@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
+import { getThemeBootstrapScript } from "@/lib/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: getThemeBootstrapScript() }}
+        />
+      </head>
       <body className="min-h-full font-sans text-foreground">
         <Providers>{children}</Providers>
       </body>
