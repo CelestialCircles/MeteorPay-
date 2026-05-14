@@ -48,14 +48,14 @@ graph TD
 ## 📂 Project Structure
 
 ```text
-MeteorPay/
 ├── contract/       # Smart Contract source code (Soroban/Rust)
 │   ├── src/
 │   └── tests/
 ├── frontend/       # Web & Mobile interface (Next.js/React Native)
-│   ├── src/components/
-│   ├── src/hooks/
+│   ├── src/
 │   └── public/
+├── ISSUES.md       # Detailed project issues for contributors
+├── CONTRIBUTING.md # Contribution guidelines
 ├── README.md       # Project documentation
 └── .gitignore      # Git exclusion rules
 ```
